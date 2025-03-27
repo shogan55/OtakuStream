@@ -1,6 +1,6 @@
 🎌 OtakuStream - Ultimate Anime Streaming App 🎥🔥
 
-align="center">
+<p align="center">
   <img src="https://raw.githubusercontent.com/shogan55/OtakuStream/main/assets/OtakuStream_20250327_181011_0000.png" width="700px" alt="OtakuStream Banner">
 </p>  
 
