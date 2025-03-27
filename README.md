@@ -1,12 +1,11 @@
-#OtakuStream
 
 <p align="center">
   <img src="https://your-image-url.com" width="600px" alt="OtakuStream Banner">
 </p>  <p align="center">
-  <img src="https://img.shields.io/github/stars/your-repo/OtakuStream?style=for-the-badge">
-  <img src="https://img.shields.io/github/forks/your-repo/OtakuStream?style=for-the-badge">
-  <img src="https://img.shields.io/github/issues/your-repo/OtakuStream?style=for-the-badge">
-  <img src="https://img.shields.io/github/license/your-repo/OtakuStream?style=for-the-badge">
+  <img src="https://img.shields.io/github/stars/soyaib55/OtakuStream?style=for-the-badge">
+  <img src="https://img.shields.io/github/forks/soyaib55/OtakuStream?style=for-the-badge">
+  <img src="https://img.shields.io/github/issues/soyaib55/OtakuStream?style=for-the-badge">
+  <img src="https://img.shields.io/github/license/soyaib55/OtakuStream?style=for-the-badge">
 </p>  > ⚡ Experience Anime Like Never Before!
 A blazing-fast, modern, and feature-rich anime streaming app built using Flutter, Firebase, and Jikan API.
 
