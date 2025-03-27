@@ -31,6 +31,7 @@
 ✅ High Performance – Optimized API calls & caching
 
 
+
 ---
 
 # **📥 Download OtakuStream**
@@ -40,6 +41,7 @@
     <img src="https://img.shields.io/badge/Download-OtakuStream-blue?style=for-the-badge&logo=google-drive">
   </a>
 </p>  
+
 ---
 
 🎨 Screenshots
