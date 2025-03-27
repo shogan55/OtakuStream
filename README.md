@@ -2,22 +2,34 @@
 
 <p align="center">
   <img src="https://your-image-url.com" width="600px" alt="OtakuStream Banner">
-</p>  <p align="center">
-  <a href="https://github.com/soyaib55/OtakuStream/stargazers">
-    <img src="https://img.shields.io/github/stars/soyaib55/OtakuStream?style=for-the-badge&color=yellow">
-  </a>
-  <a href="https://github.com/soyaib55/OtakuStream/network/members">
-    <img src="https://img.shields.io/github/forks/soyaib55/OtakuStream?style=for-the-badge&color=blue">
-  </a>
-  <a href="https://github.com/soyaib55/OtakuStream/issues">
-    <img src="https://img.shields.io/github/issues/soyaib55/OtakuStream?style=for-the-badge&color=red">
-  </a>
-  <a href="https://github.com/soyaib55/OtakuStream/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/soyaib55/OtakuStream?style=for-the-badge&color=green">
-  </a>
-</p>  > 🚀 The ultimate Flutter-based anime streaming app with Firebase & Jikan API!
-📺 Stream anime in HD, create a watchlist, and enjoy a smooth UI experience.
+</p>  
 
+<p align="center">
+  <img src="https://img.shields.io/github/stars/shogan55/OtakuStream?style=for-the-badge&color=ffcc00&logo=github">
+  <img src="https://img.shields.io/github/forks/shogan55/OtakuStream?style=for-the-badge&color=ff5733&logo=repo-forked">
+  <img src="https://img.shields.io/github/issues/shogan55/OtakuStream?style=for-the-badge&color=ff0000&logo=bug">
+  <img src="https://img.shields.io/github/license/shogan55/OtakuStream?style=for-the-badge&color=008000&logo=law">
+</p>  
+
+---
+
+## **🔥 Features**
+✔ **HD Anime Streaming** – Seamless playback with Chewie + Video Player  
+✔ **Trending Anime** – Discover top-rated & most-watched shows  
+✔ **Smart Search & Filters** – Find your favorite anime instantly  
+✔ **Watchlist Management** – Save anime & track your watch history  
+✔ **User Authentication** – Secure login & signup with Firebase Auth  
+✔ **Dark Mode Support** – Aesthetic UI with smooth transitions  
+✔ **High Performance** – Optimized API calls & caching  
+
+---
+
+## **📥 Download OtakuStream**  
+<p align="center">
+  <a href="https://github.com/shogan55/OtakuStream/archive/refs/heads/main.zip">
+    <img src="https://img.shields.io/badge/DOWNLOAD-OTAKUSTREAM-purple?style=for-the-badge&logo=download">
+  </a>
+</p>
 
 
 
