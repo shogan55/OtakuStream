@@ -149,15 +149,4 @@ Want to contribute? Fork the repo and submit a PR!
 
 ---
 
-🔥 OtakuStream - Watch Anime Anytime, Anywhere! 🔥
-
-
----
-
-🔥 What’s Special in This README?
-
-✅ Futuristic Look with modern badges & icons
-✅ GitHub Widgets for stars, forks, issues & license
-✅ Interactive Download Button
-✅ Image-based UI with Screenshots
-✅ Proper Formatting & Spacing
+🔥 OtakuStream - Watch the Endless Anime Content 
