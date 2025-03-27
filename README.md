@@ -1,29 +1,39 @@
+---
+
+🎌 OtakuStream - Ultimate Anime Streaming App 🎥🔥
 
 <p align="center">
   <img src="https://your-image-url.com" width="600px" alt="OtakuStream Banner">
 </p>  <p align="center">
-  <img src="https://img.shields.io/github/stars/soyaib55/OtakuStream?style=for-the-badge">
-  <img src="https://img.shields.io/github/forks/soyaib55/OtakuStream?style=for-the-badge">
-  <img src="https://img.shields.io/github/issues/soyaib55/OtakuStream?style=for-the-badge">
-  <img src="https://img.shields.io/github/license/soyaib55/OtakuStream?style=for-the-badge">
-</p>  > ⚡ Experience Anime Like Never Before!
-A blazing-fast, modern, and feature-rich anime streaming app built using Flutter, Firebase, and Jikan API.
+  <a href="https://github.com/soyaib55/OtakuStream/stargazers">
+    <img src="https://img.shields.io/github/stars/soyaib55/OtakuStream?style=for-the-badge&color=yellow">
+  </a>
+  <a href="https://github.com/soyaib55/OtakuStream/network/members">
+    <img src="https://img.shields.io/github/forks/soyaib55/OtakuStream?style=for-the-badge&color=blue">
+  </a>
+  <a href="https://github.com/soyaib55/OtakuStream/issues">
+    <img src="https://img.shields.io/github/issues/soyaib55/OtakuStream?style=for-the-badge&color=red">
+  </a>
+  <a href="https://github.com/soyaib55/OtakuStream/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/soyaib55/OtakuStream?style=for-the-badge&color=green">
+  </a>
+</p>  > 🚀 The ultimate Flutter-based anime streaming app with Firebase & Jikan API!
+📺 Stream anime in HD, create a watchlist, and enjoy a smooth UI experience.
 
 
 
 
 ---
 
-🚀 Features
+🔥 Features
 
-✔️ HD Anime Streaming – Powered by Chewie + Video Player
-✔️ Trending Anime – Discover the latest and top-rated anime
-✔️ Smart Search & Filters – Find anime with ease
-✔️ Watchlist – Save your favorites & track progress
-✔️ Anime Details – Full anime info with episodes list
-✔️ User Authentication – Secure Login/Signup with Firebase
-✔️ Dark Mode – Stunning UI with smooth transitions
-✔️ Fast Performance – Optimized API calls & caching
+✅ HD Anime Streaming – Seamless playback with Chewie + Video Player
+✅ Trending Anime – Discover top-rated & most-watched shows
+✅ Smart Search & Filters – Find your favorite anime instantly
+✅ Watchlist Management – Save anime & track your watch history
+✅ User Authentication – Secure login & signup with Firebase Auth
+✅ Dark Mode Support – Aesthetic UI with smooth transitions
+✅ High Performance – Optimized API calls & caching
 
 
 ---
@@ -32,16 +42,12 @@ A blazing-fast, modern, and feature-rich anime streaming app built using Flutter
 
 <p align="center">
   <a href="https://your-download-link.com">
-    <img src="https://img.shields.io/badge/Download-OtakuStream-blue?style=for-the-badge&logo=google-drive" alt="Download OtakuStream">
+    <img src="https://img.shields.io/badge/Download-OtakuStream-blue?style=for-the-badge&logo=google-drive">
   </a>
 </p>  
 ---
 
 🎨 Screenshots
-
-> (🔥 High-quality images coming soon!)
-
-
 
 📌 Home Screen
 
@@ -96,7 +102,7 @@ lib/
 
 1️⃣ Clone the Repository
 
-git clone https://github.com/shogan55/OtakuStream
+git clone https://github.com/soyaib55/OtakuStream.git
 cd OtakuStream
 
 2️⃣ Install Dependencies
@@ -116,6 +122,7 @@ Download google-services.json and place it in android/app/
 
 flutter run
 
+
 ---
 
 📡 API & Streaming
@@ -124,20 +131,29 @@ Anime Data: Anilist API
 
 Streaming: Chewie + Video_Player
 
+
+
 ---
 
 🔗 Connect with Us
 
 <p align="center">
-  <a href="https://www.otakustream.com"><img src="https://img.shields.io/badge/Website-OtakuStream-blue?style=for-the-badge&logo=google-chrome"></a>
-  <a href="https://twitter.com/OtakuStreamApp"><img src="https://img.shields.io/badge/Twitter-@OtakuStreamApp-blue?style=for-the-badge&logo=twitter"></a>
-  <a href="https://instagram.com/OtakuStreamApp"><img src="https://img.shields.io/badge/Instagram-@OtakuStreamApp-orange?style=for-the-badge&logo=instagram"></a>
+  <a href="https://www.otakustream.com">
+    <img src="https://img.shields.io/badge/Website-OtakuStream-blue?style=for-the-badge&logo=google-chrome">
+  </a>
+  <a href="https://twitter.com/OtakuStreamApp">
+    <img src="https://img.shields.io/badge/Twitter-@OtakuStreamApp-blue?style=for-the-badge&logo=twitter">
+  </a>
+  <a href="https://instagram.com/OtakuStreamApp">
+    <img src="https://img.shields.io/badge/Instagram-@OtakuStreamApp-orange?style=for-the-badge&logo=instagram">
+  </a>
 </p>  
 ---
 
 📜 License
 
 This project is licensed under the MIT License.
+
 
 ---
 
@@ -146,6 +162,10 @@ This project is licensed under the MIT License.
 > Love this project? Give it a ⭐ on GitHub!
 Want to contribute? Fork the repo and submit a PR!
 
+
+
+
 ---
 
-🔥 OtakuStream - Watch the Endless Anime Content 
+🔥 OtakuStream - Watch Anime Anytime, Anywhere! 🔥
+
