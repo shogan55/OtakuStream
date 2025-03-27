@@ -1,0 +1,8 @@
+# Ignore unnecessary Flutter files
+build/
+.dart_tool/
+.pub-cache/
+.vscode/
+.idea/
+*.iml
+*.DS_Store

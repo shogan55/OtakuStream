@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "231965600278",
+    "project_id": "otakustream-aa043",
+    "storage_bucket": "otakustream-aa043.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:231965600278:android:b4629404a6212f84222337",
+        "android_client_info": {
+          "package_name": "com.example.otakustream"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwGS3qPPnD_Wr0Uep-pAOCb3lj0W5w5k0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
