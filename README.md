@@ -1,9 +1,4 @@
-Haan bhai! GitHub ke modern-style README me widgets, badges aur cool UI elements bhi use hote hain. Chalo ek ultra-modern README banate hain jo futuristic bhi dikhe aur interactive bhi ho!
-
-
----
-
-🎌 OtakuStream - Ultimate Anime Streaming App 🎥🔥
+#OtakuStream
 
 <p align="center">
   <img src="https://your-image-url.com" width="600px" alt="OtakuStream Banner">
@@ -102,7 +97,7 @@ lib/
 
 1️⃣ Clone the Repository
 
-git clone https://github.com/your-repo/OtakuStream.git
+git clone https://github.com/shogan55/OtakuStream
 cd OtakuStream
 
 2️⃣ Install Dependencies
@@ -126,7 +121,7 @@ flutter run
 
 📡 API & Streaming
 
-Anime Data: Jikan API
+Anime Data: Anilist API
 
 Streaming: Chewie + Video_Player
 
