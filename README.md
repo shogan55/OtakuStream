@@ -1,5 +1,3 @@
----
-
 🎌 OtakuStream - Ultimate Anime Streaming App 🎥🔥
 
 <p align="center">
@@ -102,20 +100,19 @@ lib/
 
 1️⃣ Clone the Repository
 
-git clone https://github.com/soyaib55/OtakuStream.git
-cd OtakuStream
+git clone https://github.com/soyaib55/OtakuStream.git cd OtakuStream
 
 2️⃣ Install Dependencies
 
-flutter pub get
+   flutter pub get
 
 3️⃣ Setup Firebase
 
-Create a Firebase project
+   Create a Firebase project
 
-Enable Authentication & Firestore
+   Enable Authentication & Firestore
 
-Download google-services.json and place it in android/app/
+   Download google-services.json and place it in android/app/
 
 
 4️⃣ Run the App
@@ -130,7 +127,6 @@ flutter run
 Anime Data: Anilist API
 
 Streaming: Chewie + Video_Player
-
 
 
 ---
@@ -159,9 +155,8 @@ This project is licensed under the MIT License.
 
 ✨ Contributions
 
-> Love this project? Give it a ⭐ on GitHub!
+Love this project? Give it a ⭐ on GitHub!
 Want to contribute? Fork the repo and submit a PR!
-
 
 
 
