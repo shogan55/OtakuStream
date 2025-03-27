@@ -42,6 +42,8 @@
   </a>
 </p>  
 
+
+
 ---
 
 🎨 Screenshots
@@ -58,7 +60,9 @@
 
 <p align="center">
   <img src="https://your-image-url.com" width="300px">
-</p>  
+</p>
+
+
 ---
 
 📂 Project Structure
@@ -143,6 +147,8 @@ Streaming: Chewie + Video_Player
     <img src="https://img.shields.io/badge/Instagram-@OtakuStreamApp-orange?style=for-the-badge&logo=instagram">
   </a>
 </p>  
+
+
 ---
 
 📜 License
