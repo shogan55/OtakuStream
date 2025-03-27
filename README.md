@@ -122,7 +122,6 @@ Download google-services.json and place it in android/app/
 
 flutter run
 
-
 ---
 
 📡 API & Streaming
@@ -130,8 +129,6 @@ flutter run
 Anime Data: Jikan API
 
 Streaming: Chewie + Video_Player
-
-
 
 ---
 
@@ -148,16 +145,12 @@ Streaming: Chewie + Video_Player
 
 This project is licensed under the MIT License.
 
-
 ---
 
 ✨ Contributions
 
 > Love this project? Give it a ⭐ on GitHub!
 Want to contribute? Fork the repo and submit a PR!
-
-
-
 
 ---
 
@@ -173,5 +166,3 @@ Want to contribute? Fork the repo and submit a PR!
 ✅ Interactive Download Button
 ✅ Image-based UI with Screenshots
 ✅ Proper Formatting & Spacing
-
-Bhai, ab batao ye modernized feel aa rahi hai ya aur kuch tweak chahiye?
