@@ -13,27 +13,6 @@
 
 ---
 
-## **🔥 Features**
-✔ **HD Anime Streaming** – Seamless playback with Chewie + Video Player  
-✔ **Trending Anime** – Discover top-rated & most-watched shows  
-✔ **Smart Search & Filters** – Find your favorite anime instantly  
-✔ **Watchlist Management** – Save anime & track your watch history  
-✔ **User Authentication** – Secure login & signup with Firebase Auth  
-✔ **Dark Mode Support** – Aesthetic UI with smooth transitions  
-✔ **High Performance** – Optimized API calls & caching  
-
----
-
-## **📥 Download OtakuStream**  
-<p align="center">
-  <a href="https://github.com/shogan55/OtakuStream/archive/refs/heads/main.zip">
-    <img src="https://img.shields.io/badge/DOWNLOAD-OTAKUSTREAM-purple?style=for-the-badge&logo=download">
-  </a>
-</p>
-
-
-
----
 
 🔥 Features
 
@@ -48,7 +27,7 @@
 
 ---
 
-📥 Download OtakuStream
+##📥 Download OtakuStream
 
 <p align="center">
   <a href="https://your-download-link.com">
