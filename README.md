@@ -8,7 +8,7 @@
   <img src="https://img.shields.io/github/stars/shogan55/OtakuStream?style=for-the-badge&color=ffcc00&logo=github">
   <img src="https://img.shields.io/github/forks/shogan55/OtakuStream?style=for-the-badge&color=ff5733&logo=repo-forked">
   <img src="https://img.shields.io/github/issues/shogan55/OtakuStream?style=for-the-badge&color=ff0000&logo=bug">
-  <img src="https://img.shields.io/github/license/shogan55/OtakuStream?style=for-the-badge&color=008000&logo=law">
+  <img src="https://img.shields.io/github/LICENSE/shogan55/OtakuStream?style=for-the-badge&color=008000&logo=law"> 
 </p>  
 
 ---
