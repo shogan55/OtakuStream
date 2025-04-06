@@ -77,7 +77,41 @@ class ApiService {
     return _fetchAnimeData(query);
   }
 
-  // Helper function to fetch data
+  // Search Anime by Name
+  static Future<List<Anime>> searchAnime(String search) async {
+    const String query = '''
+    query (\$search: String) {
+      Page(perPage: 10) {
+        media(search: \$search, type: ANIME) {
+          id
+          title { userPreferred }
+          coverImage { extraLarge }
+          averageScore
+        }
+      }
+    }
+    ''';
+
+    final response = await http.post(
+      Uri.parse(_baseUrl),
+      headers: {"Content-Type": "application/json"},
+      body: jsonEncode({
+        "query": query,
+        "variables": {"search": search},
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      return (data['data']['Page']['media'] as List)
+          .map((anime) => Anime.fromJson(anime))
+          .toList();
+    } else {
+      throw Exception("Failed to fetch search results");
+    }
+  }
+
+  // Helper function to fetch data from AniList API
   static Future<List<Anime>> _fetchAnimeData(String query) async {
     final response = await http.post(
       Uri.parse(_baseUrl),

@@ -1,31 +1,39 @@
+import 'package:flutter/material.dart' as flutter; // ✅ Prevent Conflict
 import 'package:get/get.dart';
-import 'package:otakustream/utils/app_color.dart';
 import '../../models/api/anime_model.dart';
 import '../../services/api_service.dart';
+import '../../utils/helpers.dart';
+import '../../utils/app_color.dart';
 
-class DetailsController extends GetxController {
-  final Rx<Anime?> anime = Rx<Anime?>(null);
+// ✅ Renamed Class to Avoid Conflict
+class SearchAnimeController extends GetxController {
+  final flutter.TextEditingController searchController =
+      flutter.TextEditingController();
+  var searchResults = <Anime>[].obs;
+  var isLoading = false.obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-    final animeData = Get.arguments;
-    if (animeData != null) {
-      anime.value = Anime.fromJson(animeData);
-    }
-  }
-
-  void watchAnime() {
-    if (anime.value?.videoUrl.isNotEmpty ?? false) {
-      Get.toNamed('/video', arguments: anime.value?.videoUrl);
-    } else {
+  void searchAnime(String query) async {
+    if (query.isEmpty) {
       Get.snackbar(
         "Error",
-        "No video available",
+        "Please enter a search term.",
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: AppColors.background,
         colorText: AppColors.textColor,
       );
+
+      return;
+    }
+
+    isLoading.value = true;
+
+    try {
+      var results = await ApiService.searchAnime(query);
+      searchResults.assignAll(results);
+    } catch (e) {
+      showSnackbar("Error", "Failed to fetch results.");
+    } finally {
+      isLoading.value = false;
     }
   }
 }

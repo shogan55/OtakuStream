@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart'; // ✅ Fix for Curves
 import 'package:get/get.dart';
 import '../ui/splash/splash_screen.dart';
 import '../ui/home/home_screen.dart';
@@ -31,12 +32,18 @@ class AppRoutes {
       page: () => const SplashScreen(),
       binding: AppBindings(),
     ),
-    GetPage(name: home, page: () => HomeScreen(), binding: AppBindings()),
+    GetPage(
+      name: home,
+      page: () => HomeScreen(), //
+      binding: AppBindings(),
+    ),
     GetPage(
       name: details,
-      page: () => DetailsScreen(),
+      page: () => DetailsScreen(), //
       binding: AppBindings(),
       transition: Transition.fadeIn,
+      curve: Curves.easeInOut, //
+      transitionDuration: const Duration(milliseconds: 300),
     ),
     GetPage(
       name: watchlist,
@@ -55,7 +62,7 @@ class AppRoutes {
     ),
     GetPage(
       name: settings,
-      page: () => const SettingsScreen(),
+      page: () => SettingsScreen(),
       binding: AppBindings(),
     ),
     GetPage(
@@ -75,9 +82,11 @@ class AppRoutes {
     ),
     GetPage(
       name: player,
-      page: () => PlayerScreen(),
+      page: () => PlayerScreen(), //
       binding: AppBindings(),
       transition: Transition.rightToLeft,
+      curve: Curves.fastOutSlowIn, //
+      transitionDuration: const Duration(milliseconds: 300),
     ),
   ];
 }

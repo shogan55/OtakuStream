@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../models/api/anime_model.dart';
+import '../../utils/app_color.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({super.key});
@@ -74,7 +75,7 @@ class DetailsScreen extends StatelessWidget {
                           genre,
                           style: const TextStyle(color: Colors.white),
                         ),
-                        backgroundColor: Colors.redAccent,
+                        backgroundColor: AppColors.background,
                       );
                     }).toList(),
               ),
@@ -87,7 +88,7 @@ class DetailsScreen extends StatelessWidget {
                 icon: const Icon(Icons.play_arrow, size: 28),
                 label: const Text("Watch Now", style: TextStyle(fontSize: 18)),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.redAccent,
+                  backgroundColor: AppColors.buttonColor,
                   padding: const EdgeInsets.symmetric(
                     vertical: 12,
                     horizontal: 20,

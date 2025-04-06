@@ -68,7 +68,7 @@ class HomeScreen extends StatelessWidget {
                 AnimeCarousel(),
                 const SizedBox(height: 20),
 
-                // ✅ Horizontal Scrolling Sections
+                // ✅ Horizontal Scrolling Sections (Updated height)
                 buildHorizontalSection("📡 Top Airing", controller.topAiring),
                 buildHorizontalSection("🔥 Top Ranked", controller.topRanked),
                 buildHorizontalSection("📢 Top Popular", controller.topPopular),
@@ -95,7 +95,7 @@ class HomeScreen extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         SizedBox(
-          height: 230, // ✅ Fixed height for horizontal scroll
+          height: 250, // ✅ Increased height (from 230 to 250)
           child: Obx(() {
             if (animeList.isEmpty) {
               return const Center(
