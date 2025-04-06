@@ -12,61 +12,91 @@ class AnimeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => DetailsScreen(), arguments: anime); // ✅ Navigation Fix
+        Get.to(() => DetailsScreen(), arguments: anime);
       },
-      child: Container(
-        margin: const EdgeInsets.only(right: 10),
-        width: 140, // ✅ Fixed width
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // ✅ Anime Image (Reduced height)
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.network(
-                anime.image,
-                fit: BoxFit.cover,
-                height: 180, // ✅ Reduced height from 200 to 180
-                width: double.infinity,
-              ),
+      child: Column(
+        children: [
+          // ✅ Anime Card with Rounded Borders
+          Container(
+            margin: const EdgeInsets.only(right: 12),
+            width: 130,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              color: Colors.black.withOpacity(0.2),
             ),
-            const SizedBox(height: 5),
-
-            // ✅ Anime Title (Fixed height to avoid overflow)
-            SizedBox(
-              height: 20, // ✅ Fixed height
-              child: Text(
-                anime.title,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 14, // ✅ Reduced font size
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            const SizedBox(height: 5), // ✅ Added spacing
-            // ✅ Rating and Score (Reduced size)
-            Row(
+            child: Stack(
               children: [
-                const Icon(
-                  Icons.star,
-                  color: Colors.yellow,
-                  size: 14,
-                ), // ✅ Smaller icon
-                const SizedBox(width: 3),
-                Text(
-                  anime.score.toString(),
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 12,
-                  ), // ✅ Reduced font size
+                // ✅ Anime Image
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: Image.network(
+                    anime.image,
+                    fit: BoxFit.cover,
+                    height: 190,
+                    width: double.infinity,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Image.network(
+                        'https://via.placeholder.com/150x200?text=No+Image',
+                        fit: BoxFit.cover,
+                        height: 190,
+                        width: double.infinity,
+                      );
+                    },
+                  ),
+                ),
+
+                // ✅ Score Badge (Styled like Image)
+                Positioned(
+                  bottom: 5,
+                  left: 5,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 4,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.cyan, // Change to match your theme
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(Icons.star, color: Colors.black, size: 14),
+                        const SizedBox(width: 3),
+                        Text(
+                          anime.score != null ? anime.score.toString() : "0.0",
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
-          ],
-        ),
+          ),
+
+          const SizedBox(height: 5),
+
+          // ✅ Anime Title
+          SizedBox(
+            width: 130,
+            child: Text(
+              anime.title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 13,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

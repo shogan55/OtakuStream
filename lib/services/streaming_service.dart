@@ -1,30 +1,41 @@
-import 'package:dio/dio.dart';
-import '../../models/api/episode_model.dart'; // ✅ Import Episode model
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import '../models/api/episode_model.dart';
+import '../models/api/anime_model.dart';
 
 class StreamingService {
-  final Dio _dio = Dio();
-  final String baseUrl = "https://gogoanime.consumet.stream";
+  static const String baseUrl = 'https://consumetapi-sable.vercel.app';
 
-  // ✅ Fetch episodes for an anime
-  Future<List<Episode>> fetchEpisodes(String animeId) async {
+  static Future<List<Episode>> fetchEpisodes(
+    Anime anime,
+    String provider,
+  ) async {
     try {
-      final response = await _dio.get('$baseUrl/anime/$animeId');
-      List episodes = response.data['episodes'];
-      return episodes.map((e) => Episode.fromJson(e)).toList();
-    } catch (e) {
-      print('Error fetching episodes: $e');
-      return [];
-    }
-  }
+      final int anilistId = anime.id;
 
-  // ✅ Get streaming link for a specific episode
-  Future<String> getEpisodeStreamUrl(String episodeId) async {
-    try {
-      final response = await _dio.get('$baseUrl/episode/$episodeId');
-      return response.data['videoUrl'] ?? '';
+      // ✅ Step 1: Fetch synced episodes using AniList ID with provider
+      final url =
+          '$baseUrl/meta/anilist/episodes/$anilistId?provider=$provider';
+      print("📡 Fetching from: $url");
+
+      final response = await http.get(Uri.parse(url));
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        final episodes = data['episodes'] as List?;
+
+        if (episodes != null && episodes.isNotEmpty) {
+          print('🎉 Fetched ${episodes.length} episodes from $provider');
+          return episodes.map((e) => Episode.fromJson(e)).toList();
+        } else {
+          throw Exception('❌ No episodes found.');
+        }
+      } else {
+        throw Exception('❌ Failed with status: ${response.statusCode}');
+      }
     } catch (e) {
-      print('Error fetching stream URL: $e');
-      return '';
+      print('❌ Exception occurred while fetching episodes: $e');
+      throw Exception('Failed to load episodes');
     }
   }
 }

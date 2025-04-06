@@ -1,50 +1,51 @@
 import 'package:get/get.dart';
-import 'package:otakustream/utils/app_color.dart';
 import '../../models/api/anime_model.dart';
+import '../../models/api/episode_model.dart';
 import '../../services/streaming_service.dart';
+import '../player/player_screen.dart';
 
 class DetailsController extends GetxController {
-  final Rx<Anime?> anime = Rx<Anime?>(null);
-  final StreamingService _streamingService = StreamingService();
+  late Anime anime;
+
+  final episodes = <Episode>[].obs;
+  final isLoading = false.obs;
+  final errorMessage = ''.obs;
+  final selectedSource = 'zoro'.obs;
 
   @override
   void onInit() {
     super.onInit();
-    final animeData = Get.arguments;
-    if (animeData != null) {
-      anime.value = Anime.fromJson(animeData);
-      fetchVideoUrl();
+    anime = Get.arguments as Anime;
+    print("📦 Anime object received: $anime");
+    print("🆔 Anime ID: ${anime.id}");
+
+    fetchEpisodes();
+  }
+
+  void changeSource(String newSource) {
+    selectedSource.value = newSource;
+    fetchEpisodes();
+  }
+
+  void fetchEpisodes() async {
+    try {
+      isLoading.value = true;
+      errorMessage.value = '';
+      final fetchedEpisodes = await StreamingService.fetchEpisodes(
+        anime,
+        selectedSource.value,
+      );
+      episodes.assignAll(fetchedEpisodes);
+    } catch (e) {
+      errorMessage.value = e.toString();
+      print("❌ Error fetching episodes: $e");
+    } finally {
+      isLoading.value = false;
     }
   }
 
-  // ✅ Fetch video URL separately
-  void fetchVideoUrl() async {
-    if (anime.value != null) {
-      String streamUrl = await _streamingService.getEpisodeStreamUrl(
-        anime.value!.id.toString(),
-      );
-      anime.value = Anime(
-        id: anime.value!.id,
-        title: anime.value!.title,
-        image: anime.value!.image,
-        score: anime.value!.score,
-        genres: anime.value!.genres,
-        videoUrl: streamUrl, // ✅ Update video URL
-      );
-    }
-  }
-
-  void watchAnime() {
-    if (anime.value?.videoUrl.isNotEmpty ?? false) {
-      Get.toNamed('/video', arguments: anime.value?.videoUrl);
-    } else {
-      Get.snackbar(
-        "Error",
-        "No video available",
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: AppColors.background,
-        colorText: AppColors.textColor,
-      );
-    }
+  void watchEpisode(String episodeId) {
+    print("▶️ Launching Player with Episode ID: $episodeId");
+    Get.to(() => const PlayerScreen(), arguments: episodeId);
   }
 }

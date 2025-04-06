@@ -70,11 +70,7 @@ class AppRoutes {
       page: () => const AboutScreen(),
       binding: AppBindings(),
     ),
-    GetPage(
-      name: login,
-      page: () => const LoginScreen(),
-      binding: AppBindings(),
-    ),
+    GetPage(name: login, page: () => LoginScreen(), binding: AppBindings()),
     GetPage(
       name: signup,
       page: () => const SignupScreen(),

@@ -22,7 +22,7 @@ class AnimeCarousel extends StatelessWidget {
           return CarouselSlider.builder(
             itemCount: controller.trendingAnime.length,
             options: CarouselOptions(
-              height: 350, // ✅ Adjusted height for better visibility
+              height: 350,
               autoPlay: true,
               enlargeCenterPage: true,
               viewportFraction: 0.8,
@@ -39,7 +39,6 @@ class AnimeCarousel extends StatelessWidget {
                 child: Stack(
                   alignment: Alignment.bottomLeft,
                   children: [
-                    // ✅ Anime Cover Image
                     ClipRRect(
                       borderRadius: BorderRadius.circular(12),
                       child: Image.network(
@@ -47,10 +46,25 @@ class AnimeCarousel extends StatelessWidget {
                         fit: BoxFit.cover,
                         width: double.infinity,
                         height: 350,
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) return child;
+                          return const Center(
+                            child: CircularProgressIndicator(
+                              color: AppColors.secondary,
+                            ),
+                          );
+                        },
+                        errorBuilder: (context, error, stackTrace) {
+                          return Image.network(
+                            'https://i.imgur.com/ZR5owtW.jpg',
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                            height: 350,
+                          );
+                        },
                       ),
                     ),
 
-                    // ✅ Gradient Overlay
                     Container(
                       height: 350,
                       decoration: BoxDecoration(
@@ -66,12 +80,11 @@ class AnimeCarousel extends StatelessWidget {
                       ),
                     ),
 
-                    // ✅ Anime Title with Overflow Fix
                     Positioned(
                       left: 10,
                       bottom: 85,
                       child: SizedBox(
-                        width: 250, // ✅ Ensures text doesn't cut off
+                        width: 250,
                         child: Text(
                           anime.title,
                           maxLines: 1,
@@ -85,7 +98,6 @@ class AnimeCarousel extends StatelessWidget {
                       ),
                     ),
 
-                    // ✅ Rating & Genre
                     Positioned(
                       left: 10,
                       bottom: 55,
@@ -107,7 +119,7 @@ class AnimeCarousel extends StatelessWidget {
                           const SizedBox(width: 10),
                           if (anime.genres.isNotEmpty)
                             Text(
-                              anime.genres.first, // ✅ Displays first genre
+                              anime.genres.first,
                               style: const TextStyle(
                                 color: Colors.white70,
                                 fontSize: 16,
@@ -117,7 +129,6 @@ class AnimeCarousel extends StatelessWidget {
                       ),
                     ),
 
-                    // ✅ Watch Now Button
                     Positioned(
                       left: 10,
                       bottom: 10,
@@ -141,7 +152,6 @@ class AnimeCarousel extends StatelessWidget {
 
         const SizedBox(height: 10),
 
-        // ✅ Dots Indicator for Carousel
         Obx(() {
           return Row(
             mainAxisAlignment: MainAxisAlignment.center,

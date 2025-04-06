@@ -5,7 +5,7 @@ import '../models/api/anime_model.dart';
 class ApiService {
   static const String _baseUrl = "https://graphql.anilist.co";
 
-  // Fetch Trending Anime
+  // ✅ Fetch Trending Anime (Fixed Query)
   static Future<List<Anime>> fetchTrendingAnime() async {
     const String query = '''
     query {
@@ -13,8 +13,10 @@ class ApiService {
         media(sort: TRENDING_DESC, type: ANIME) {
           id
           title { userPreferred }
-          coverImage { extraLarge }
+          coverImage { extraLarge large medium }
           averageScore
+          genres
+          trailer { id }
         }
       }
     }
@@ -23,7 +25,7 @@ class ApiService {
     return _fetchAnimeData(query);
   }
 
-  // Fetch Top Airing Anime
+  // ✅ Fetch Top Airing Anime
   static Future<List<Anime>> fetchTopAiring() async {
     const String query = '''
     query {
@@ -31,8 +33,10 @@ class ApiService {
         media(sort: POPULARITY_DESC, type: ANIME, status: RELEASING) {
           id
           title { userPreferred }
-          coverImage { extraLarge }
+          coverImage { extraLarge large medium }
           averageScore
+          genres
+          trailer { id }
         }
       }
     }
@@ -41,7 +45,7 @@ class ApiService {
     return _fetchAnimeData(query);
   }
 
-  // Fetch Top Ranked Anime
+  // ✅ Fetch Top Ranked Anime
   static Future<List<Anime>> fetchTopRanked() async {
     const String query = '''
     query {
@@ -49,8 +53,10 @@ class ApiService {
         media(sort: SCORE_DESC, type: ANIME) {
           id
           title { userPreferred }
-          coverImage { extraLarge }
+          coverImage { extraLarge large medium }
           averageScore
+          genres
+          trailer { id }
         }
       }
     }
@@ -59,7 +65,7 @@ class ApiService {
     return _fetchAnimeData(query);
   }
 
-  // Fetch Top Popular Anime
+  // ✅ Fetch Top Popular Anime
   static Future<List<Anime>> fetchTopPopular() async {
     const String query = '''
     query {
@@ -67,8 +73,10 @@ class ApiService {
         media(sort: POPULARITY_DESC, type: ANIME) {
           id
           title { userPreferred }
-          coverImage { extraLarge }
+          coverImage { extraLarge large medium }
           averageScore
+          genres
+          trailer { id }
         }
       }
     }
@@ -77,7 +85,7 @@ class ApiService {
     return _fetchAnimeData(query);
   }
 
-  // Search Anime by Name
+  // ✅ Search Anime by Name
   static Future<List<Anime>> searchAnime(String search) async {
     const String query = '''
     query (\$search: String) {
@@ -85,8 +93,10 @@ class ApiService {
         media(search: \$search, type: ANIME) {
           id
           title { userPreferred }
-          coverImage { extraLarge }
+          coverImage { extraLarge large medium }
           averageScore
+          genres
+          trailer { id }
         }
       }
     }
@@ -107,11 +117,11 @@ class ApiService {
           .map((anime) => Anime.fromJson(anime))
           .toList();
     } else {
-      throw Exception("Failed to fetch search results");
+      throw Exception("❌ Failed to fetch search results: ${response.body}");
     }
   }
 
-  // Helper function to fetch data from AniList API
+  // ✅ Helper function to fetch data
   static Future<List<Anime>> _fetchAnimeData(String query) async {
     final response = await http.post(
       Uri.parse(_baseUrl),
@@ -125,7 +135,7 @@ class ApiService {
           .map((anime) => Anime.fromJson(anime))
           .toList();
     } else {
-      throw Exception("Failed to load anime data");
+      throw Exception("❌ Failed to load anime data: ${response.body}");
     }
   }
 }

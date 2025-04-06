@@ -7,7 +7,6 @@ class HomeController extends GetxController {
   var topAiring = <Anime>[].obs;
   var topRanked = <Anime>[].obs;
   var topPopular = <Anime>[].obs;
-
   var currentCarouselIndex = 0.obs;
 
   @override
@@ -22,9 +21,14 @@ class HomeController extends GetxController {
   void fetchTrendingAnime() async {
     try {
       var result = await ApiService.fetchTrendingAnime();
-      trendingAnime.assignAll(result);
+      print("📡 Trending Anime Response: $result"); // ✅ Debugging API Data
+      if (result.isNotEmpty) {
+        trendingAnime.assignAll(result);
+      } else {
+        print("⚠️ No Trending Anime Found!");
+      }
     } catch (e) {
-      print("Error loading trending anime: $e");
+      print("❌ Error loading trending anime: $e");
     }
   }
 
@@ -33,7 +37,7 @@ class HomeController extends GetxController {
       var result = await ApiService.fetchTopAiring();
       topAiring.assignAll(result);
     } catch (e) {
-      print("Error loading top airing anime: $e");
+      print("❌ Error loading top airing anime: $e");
     }
   }
 
@@ -42,7 +46,7 @@ class HomeController extends GetxController {
       var result = await ApiService.fetchTopRanked();
       topRanked.assignAll(result);
     } catch (e) {
-      print("Error loading top ranked anime: $e");
+      print("❌ Error loading top ranked anime: $e");
     }
   }
 
@@ -51,10 +55,11 @@ class HomeController extends GetxController {
       var result = await ApiService.fetchTopPopular();
       topPopular.assignAll(result);
     } catch (e) {
-      print("Error loading top popular anime: $e");
+      print("❌ Error loading top popular anime: $e");
     }
   }
 
+  // ✅ Missing Function Added
   void updateCarouselIndex(int index) {
     currentCarouselIndex.value = index;
   }

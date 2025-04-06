@@ -4,16 +4,47 @@ import '../widgets/anime_card.dart';
 import 'carousel/anime_carousel.dart';
 import 'home_controller.dart';
 import '../../utils/app_color.dart';
+import '../../routes/app_routes.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final HomeController controller = Get.put(HomeController());
 
-  HomeScreen({super.key});
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    switch (index) {
+      case 0:
+        Get.offAllNamed(AppRoutes.home);
+        break;
+      case 1:
+        Get.toNamed(AppRoutes.search);
+        break;
+      case 2:
+        Get.toNamed(AppRoutes.watchlist);
+        break;
+      case 3:
+        Get.toNamed(AppRoutes.settings);
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
         backgroundColor: AppColors.primary,
         selectedItemColor: AppColors.secondary,
         unselectedItemColor: Colors.white60,
@@ -25,7 +56,10 @@ class HomeScreen extends StatelessWidget {
             icon: Icon(Icons.bookmark),
             label: "Watchlist",
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: "Settings",
+          ),
         ],
       ),
       body: Container(
@@ -42,7 +76,7 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // ✅ Top Bar with Left-Aligned Title and Right Settings Button
+                // ✅ App Title & Settings
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -57,18 +91,19 @@ class HomeScreen extends StatelessWidget {
                     IconButton(
                       icon: const Icon(Icons.settings, color: Colors.white),
                       onPressed: () {
-                        // Settings Page Navigation
+                        Get.toNamed(AppRoutes.settings);
                       },
                     ),
                   ],
                 ),
                 const SizedBox(height: 15),
 
-                // ✅ Trending Anime Carousel
+                // ✅ Trending Anime Carousel (Bigger)
+                const SizedBox(height: 10),
                 AnimeCarousel(),
-                const SizedBox(height: 20),
+                const SizedBox(height: 25),
 
-                // ✅ Horizontal Scrolling Sections (Updated height)
+                // ✅ Horizontal Sections with Increased Size
                 buildHorizontalSection("📡 Top Airing", controller.topAiring),
                 buildHorizontalSection("🔥 Top Ranked", controller.topRanked),
                 buildHorizontalSection("📢 Top Popular", controller.topPopular),
@@ -80,7 +115,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  // ✅ Title for Each Section
+  // ✅ Horizontal List Section (Trending section big)
   Widget buildHorizontalSection(String title, RxList animeList) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,7 +130,7 @@ class HomeScreen extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         SizedBox(
-          height: 250, // ✅ Increased height (from 230 to 250)
+          height: 270, // ✅ Increased height for better UI
           child: Obx(() {
             if (animeList.isEmpty) {
               return const Center(

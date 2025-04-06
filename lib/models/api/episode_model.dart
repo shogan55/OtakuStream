@@ -7,7 +7,7 @@ class Episode {
 
   factory Episode.fromJson(Map<String, dynamic> json) {
     return Episode(
-      id: json['id'] ?? '',
+      id: json['id'].toString(), // ✅ Convert ID to String
       title: json['title'] ?? 'Unknown',
       url: json['url'] ?? '',
     );

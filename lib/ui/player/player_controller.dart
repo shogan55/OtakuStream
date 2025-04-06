@@ -1,40 +1,36 @@
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
-import '../../services/streaming_service.dart';
 
 class PlayerController extends GetxController {
   VideoPlayerController? videoPlayerController;
   ChewieController? chewieController;
   var isLoading = true.obs;
-  final StreamingService _streamingService = StreamingService();
 
   @override
   void onInit() {
     super.onInit();
-    fetchVideo();
+    final String videoUrl = Get.arguments;
+    if (videoUrl.isNotEmpty) {
+      initializePlayer(videoUrl);
+    } else {
+      Get.snackbar("Error", "Invalid video URL");
+    }
   }
 
-  void fetchVideo() async {
-    String episodeId = Get.arguments;
-    String? url = await _streamingService.getEpisodeStreamUrl(episodeId);
+  void initializePlayer(String url) async {
+    videoPlayerController = VideoPlayerController.networkUrl(Uri.parse(url));
+    await videoPlayerController!.initialize();
 
-    if (url.isNotEmpty) {
-      videoPlayerController = VideoPlayerController.networkUrl(Uri.parse(url));
-      await videoPlayerController!.initialize();
+    chewieController = ChewieController(
+      videoPlayerController: videoPlayerController!,
+      aspectRatio: 16 / 9,
+      autoPlay: true,
+      looping: false,
+      showControls: true,
+    );
 
-      chewieController = ChewieController(
-        videoPlayerController: videoPlayerController!,
-        aspectRatio: 16 / 9,
-        autoPlay: true,
-        looping: false,
-        showControls: true,
-      );
-
-      isLoading.value = false;
-    } else {
-      Get.snackbar("Error", "No streaming URL found!");
-    }
+    isLoading.value = false;
   }
 
   @override
