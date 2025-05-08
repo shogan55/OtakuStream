@@ -5,7 +5,7 @@ import '../models/api/anime_model.dart';
 class ApiService {
   static const String _baseUrl = "https://graphql.anilist.co";
 
-  // ✅ Fetch Trending Anime (Fixed Query)
+  /// 🔥 Fetch Trending Anime
   static Future<List<Anime>> fetchTrendingAnime() async {
     const String query = '''
     query {
@@ -21,11 +21,10 @@ class ApiService {
       }
     }
     ''';
-
-    return _fetchAnimeData(query);
+    return fetchAnimeData(query);
   }
 
-  // ✅ Fetch Top Airing Anime
+  /// 📺 Fetch Top Airing
   static Future<List<Anime>> fetchTopAiring() async {
     const String query = '''
     query {
@@ -41,11 +40,10 @@ class ApiService {
       }
     }
     ''';
-
-    return _fetchAnimeData(query);
+    return fetchAnimeData(query);
   }
 
-  // ✅ Fetch Top Ranked Anime
+  /// 🏆 Fetch Top Ranked
   static Future<List<Anime>> fetchTopRanked() async {
     const String query = '''
     query {
@@ -61,11 +59,10 @@ class ApiService {
       }
     }
     ''';
-
-    return _fetchAnimeData(query);
+    return fetchAnimeData(query);
   }
 
-  // ✅ Fetch Top Popular Anime
+  /// 💥 Fetch Top Popular
   static Future<List<Anime>> fetchTopPopular() async {
     const String query = '''
     query {
@@ -81,11 +78,10 @@ class ApiService {
       }
     }
     ''';
-
-    return _fetchAnimeData(query);
+    return fetchAnimeData(query);
   }
 
-  // ✅ Search Anime by Name
+  /// 🔎 Search Anime
   static Future<List<Anime>> searchAnime(String search) async {
     const String query = '''
     query (\$search: String) {
@@ -121,8 +117,8 @@ class ApiService {
     }
   }
 
-  // ✅ Helper function to fetch data
-  static Future<List<Anime>> _fetchAnimeData(String query) async {
+  /// 📥 Public method to run GraphQL queries for anime
+  static Future<List<Anime>> fetchAnimeData(String query) async {
     final response = await http.post(
       Uri.parse(_baseUrl),
       headers: {"Content-Type": "application/json"},

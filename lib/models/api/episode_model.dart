@@ -1,15 +1,39 @@
 class Episode {
-  final String id;
+  final int number;
   final String title;
-  final String url;
+  final String id;
+  final String image;
+  final String? description;
+  final String? url;
 
-  Episode({required this.id, required this.title, required this.url});
+  Episode({
+    required this.number,
+    required this.title,
+    required this.id,
+    required this.image,
+    this.description,
+    this.url,
+  });
 
   factory Episode.fromJson(Map<String, dynamic> json) {
     return Episode(
-      id: json['id'].toString(), // ✅ Convert ID to String
-      title: json['title'] ?? 'Unknown',
-      url: json['url'] ?? '',
+      number: int.tryParse(json['number'].toString()) ?? 0,
+      title: json['title']?.toString() ?? 'Untitled',
+      id: json['id']?.toString() ?? '',
+      image: json['image']?.toString() ?? '',
+      description: json['description']?.toString(),
+      url: json['url']?.toString(),
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'number': number,
+      'title': title,
+      'id': id,
+      'image': image,
+      'description': description,
+      'url': url,
+    };
   }
 }

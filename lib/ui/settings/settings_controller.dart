@@ -8,15 +8,11 @@ class SettingsController extends GetxController {
         title: const Text("Logout"),
         content: const Text("Are you sure you want to log out?"),
         actions: [
-          TextButton(
-            onPressed: () => Get.back(), // Close the dialog
-            child: const Text("Cancel"),
-          ),
+          TextButton(onPressed: () => Get.back(), child: const Text("Cancel")),
           TextButton(
             onPressed: () {
-              // Perform logout logic here
-              Get.back(); // Close the dialog
-              Get.offAllNamed('/login'); // Navigate to login screen
+              Get.back();
+              Get.offAllNamed('/login'); // ✅ Go to login screen
             },
             child: const Text("Logout"),
           ),
@@ -26,14 +22,17 @@ class SettingsController extends GetxController {
   }
 
   void openInstagram() {
-    // Open Instagram profile logic (use url_launcher package)
+    Get.snackbar("Instagram", "Opening Instagram profile...");
+    // Use url_launcher to open the link
   }
 
   void openReddit() {
-    // Open Reddit community logic
+    Get.snackbar("Reddit", "Opening Reddit community...");
+    // Use url_launcher to open the link
   }
 
   void openDiscord() {
-    // Open Discord server logic
+    Get.snackbar("Discord", "Opening Discord server...");
+    // Use url_launcher to open the link
   }
 }

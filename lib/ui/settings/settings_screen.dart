@@ -21,8 +21,7 @@ class SettingsScreen extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.logout, color: Colors.white),
-            onPressed:
-                controller.logout, // Call logout function from controller
+            onPressed: controller.logout,
           ),
         ],
         bottom: PreferredSize(
@@ -31,56 +30,71 @@ class SettingsScreen extends StatelessWidget {
         ),
       ),
       body: ListView(
-        padding: const EdgeInsets.all(20),
         children: [
           const SizedBox(height: 20),
-          const Text(
-            "About Us",
-            style: TextStyle(fontSize: 18, color: Colors.white60),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 40),
-          const Text(
-            "Our Social",
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Colors.white70,
+
+          // About Section
+          ListTile(
+            leading: const Icon(Icons.info_outline, color: Colors.white70),
+            title: const Text(
+              "About Us",
+              style: TextStyle(fontSize: 16, color: Colors.white70),
             ),
-            textAlign: TextAlign.center,
+            trailing: const Icon(
+              Icons.arrow_forward_ios,
+              size: 16,
+              color: Colors.white54,
+            ),
+            onTap: () => Get.toNamed('/about'), // ✅ Navigate to About
+          ),
+          const Divider(color: Colors.white24),
+
+          const SizedBox(height: 20),
+          const Center(
+            child: Text(
+              "Our Social",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.white70,
+              ),
+            ),
           ),
           const SizedBox(height: 20),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               IconButton(
                 icon: const Icon(
                   Icons.camera_alt,
-                  size: 36,
+                  size: 32,
                   color: Colors.white,
-                ), // Instagram
+                ), // Instagram icon substitute
                 onPressed: controller.openInstagram,
               ),
               const SizedBox(width: 30),
               IconButton(
                 icon: const Icon(
                   Icons.reddit,
-                  size: 36,
+                  size: 32,
                   color: Colors.white,
-                ), // Reddit
+                ), // Reddit icon substitute
                 onPressed: controller.openReddit,
               ),
               const SizedBox(width: 30),
               IconButton(
                 icon: const Icon(
                   Icons.discord,
-                  size: 36,
+                  size: 32,
                   color: Colors.white,
-                ), // Discord
+                ), // Discord icon substitute
                 onPressed: controller.openDiscord,
               ),
             ],
           ),
+
+          const SizedBox(height: 40),
         ],
       ),
     );

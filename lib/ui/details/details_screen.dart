@@ -1,187 +1,194 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../details/details_controller.dart'; // ✅ Make sure it's imported
 import '../../models/api/anime_model.dart';
-import '../../utils/app_color.dart';
+import 'details_controller.dart';
+import 'anime_tab_bar.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final DetailsController controller = Get.put(DetailsController());
+    final anime = Get.arguments as Anime;
+    final controller = Get.put(DetailsController(anime));
 
-    return Obx(() {
-      final anime = controller.anime;
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Obx(() {
+        final a = controller.anime.value;
+        if (a == null) return const Center(child: CircularProgressIndicator());
 
-      return Scaffold(
-        backgroundColor: Colors.black,
-        appBar: AppBar(
-          backgroundColor: Colors.black,
-          title: Text(anime.title, style: const TextStyle(color: Colors.white)),
-          iconTheme: const IconThemeData(color: Colors.white),
-        ),
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Anime Image
-              Center(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Image.network(
-                    anime.image,
-                    width: 250,
-                    height: 350,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 15),
-
-              // Title & Rating
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: Text(
-                      anime.title,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                      ),
+        return CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              expandedHeight: 300,
+              pinned: true,
+              flexibleSpace: FlexibleSpaceBar(
+                background: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    Image.network(
+                      a.bannerImage.isNotEmpty ? a.bannerImage : a.coverImage,
+                      fit: BoxFit.cover,
                     ),
-                  ),
-                  Row(
-                    children: [
-                      const Icon(Icons.star, color: Colors.yellow, size: 22),
-                      const SizedBox(width: 5),
-                      Text(
-                        anime.score.toStringAsFixed(1),
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
+                    Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
+                          colors: [
+                            Colors.black.withOpacity(0.8),
+                            Colors.transparent,
+                          ],
                         ),
                       ),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
-
-              // Genres
-              if (anime.genres.isNotEmpty)
-                Wrap(
-                  spacing: 8,
-                  children:
-                      anime.genres
-                          .map(
-                            (genre) => Chip(
-                              label: Text(
-                                genre,
-                                style: const TextStyle(color: Colors.white),
-                              ),
-                              backgroundColor: AppColors.background,
-                            ),
-                          )
-                          .toList(),
+                    ),
+                  ],
                 ),
-              const SizedBox(height: 15),
-
-              // 🔁 Streaming Server Dropdown
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text("Server: ", style: TextStyle(color: Colors.white)),
-                  DropdownButton<String>(
-                    dropdownColor: Colors.grey[900],
-                    value: controller.selectedSource.value,
-                    style: const TextStyle(color: Colors.white),
-                    onChanged: (newValue) {
-                      if (newValue != null) {
-                        controller.changeSource(newValue);
-                      }
-                    },
-                    items:
-                        ['zoro', 'gogoanime', 'animepahe']
-                            .map(
-                              (source) => DropdownMenuItem(
-                                value: source,
-                                child: Text(source.toUpperCase()),
-                              ),
-                            )
-                            .toList(),
-                  ),
-                ],
               ),
-              const SizedBox(height: 10),
+              leading: IconButton(
+                icon: const Icon(Icons.arrow_back, color: Colors.white),
+                onPressed: () => Get.back(),
+              ),
+              actions: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 12),
+                  child: DropdownButton<String>(
+                    value: controller.selectedSource.value,
+                    dropdownColor: Colors.grey[900],
+                    underline: const SizedBox(),
+                    icon: const Icon(Icons.stream, color: Colors.white),
+                    items:
+                        controller.availableSources.map((src) {
+                          return DropdownMenuItem<String>(
+                            value: src,
+                            child: Text(
+                              src,
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                          );
+                        }).toList(),
+                    onChanged: controller.changeSource,
+                  ),
+                ),
+              ],
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      a.title,
+                      style: const TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Wrap(
+                      spacing: 6,
+                      children:
+                          a.genres.map((g) {
+                            return Chip(
+                              label: Text(g),
+                              backgroundColor: Colors.cyanAccent.withOpacity(
+                                0.2,
+                              ),
+                              labelStyle: const TextStyle(color: Colors.white),
+                            );
+                          }).toList(),
+                    ),
+                    const SizedBox(height: 12),
+                    Text(
+                      a.description
+                          .replaceAll(RegExp(r'<[^>]*>|&[^;]+;'), '')
+                          .trim(),
+                      style: const TextStyle(color: Colors.white70),
+                    ),
+                    const SizedBox(height: 20),
+                    const AnimeTabBar(),
+                    const SizedBox(height: 12),
+                    controller.selectedTab.value == 0
+                        ? buildEpisodeList(controller)
+                        : controller.selectedTab.value == 1
+                        ? const Text(
+                          "📝 Reviews Section (To Be Connected with Firestore)",
+                          style: TextStyle(color: Colors.white70),
+                        )
+                        : const Text(
+                          "🔗 Related Anime (Coming Soon)",
+                          style: TextStyle(color: Colors.white70),
+                        ),
+                    const SizedBox(height: 30),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        );
+      }),
+    );
+  }
 
-              // Watch Now Button
-              Center(
-                child: ElevatedButton.icon(
-                  onPressed:
-                      controller.episodes.isNotEmpty
-                          ? () => controller.watchEpisode(
-                            controller.episodes.first.id,
+  Widget buildEpisodeList(DetailsController controller) {
+    return Obx(() {
+      if (controller.episodes.isEmpty) {
+        return const Center(
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 20),
+            child: CircularProgressIndicator(),
+          ),
+        );
+      }
+
+      return Column(
+        children:
+            controller.episodes.map((e) {
+              return Container(
+                margin: const EdgeInsets.only(bottom: 12),
+                decoration: BoxDecoration(
+                  color: Colors.grey[900],
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.cyanAccent,
+                    child: Text(
+                      '${e.number}',
+                      style: const TextStyle(color: Colors.black),
+                    ),
+                  ),
+                  title: Text(
+                    e.title,
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                  subtitle:
+                      e.description != null
+                          ? Text(
+                            e.description!,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(color: Colors.white70),
                           )
                           : null,
-                  icon: const Icon(Icons.play_arrow, size: 28),
-                  label: const Text(
-                    "Watch Now",
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.buttonColor,
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 12,
-                      horizontal: 20,
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-
-              const Text(
-                "Episodes",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 10),
-
-              controller.episodes.isEmpty
-                  ? const Center(
-                    child: Text(
-                      "No episodes available.",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  )
-                  : ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: controller.episodes.length,
-                    itemBuilder: (context, index) {
-                      final episode = controller.episodes[index];
-                      return ListTile(
-                        title: Text(
-                          "Episode ${index + 1}: ${episode.title}",
-                          style: const TextStyle(color: Colors.white),
-                        ),
-                        trailing: const Icon(
-                          Icons.play_circle_outline,
-                          color: Colors.white,
-                        ),
-                        onTap: () => controller.watchEpisode(episode.id),
+                  onTap: () {
+                    if (e.url != null && e.url!.isNotEmpty) {
+                      Get.toNamed('/player', arguments: e.url);
+                    } else {
+                      Get.snackbar(
+                        "Error",
+                        "This episode has no streaming URL.",
+                        backgroundColor: Colors.black87,
+                        colorText: Colors.white,
                       );
-                    },
-                  ),
-            ],
-          ),
-        ),
+                    }
+                  },
+                ),
+              );
+            }).toList(),
       );
     });
   }

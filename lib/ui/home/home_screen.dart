@@ -31,10 +31,12 @@ class _HomeScreenState extends State<HomeScreen> {
         Get.toNamed(AppRoutes.search);
         break;
       case 2:
-        Get.toNamed(AppRoutes.watchlist);
+        Get.toNamed(AppRoutes.genre);
         break;
       case 3:
-        Get.toNamed(AppRoutes.settings);
+        Get.toNamed(AppRoutes.watchlist);
+      case 4:
+        Get.toNamed(AppRoutes.profile);
         break;
     }
   }
@@ -53,13 +55,14 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
           BottomNavigationBarItem(
+            icon: Icon(Icons.category),
+            label: "categories",
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.bookmark),
             label: "Watchlist",
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: "Settings",
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
         ],
       ),
       body: Container(
@@ -67,7 +70,10 @@ class _HomeScreenState extends State<HomeScreen> {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [Color(0xFF1E1E2C), Color(0xFF252538)],
+            colors: [
+              Color.fromARGB(255, 15, 15, 23),
+              Color.fromARGB(255, 15, 15, 23),
+            ],
           ),
         ),
         child: SafeArea(
@@ -76,7 +82,6 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // ✅ App Title & Settings
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -98,12 +103,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 15),
 
-                // ✅ Trending Anime Carousel (Bigger)
                 const SizedBox(height: 10),
                 AnimeCarousel(),
                 const SizedBox(height: 25),
 
-                // ✅ Horizontal Sections with Increased Size
                 buildHorizontalSection("📡 Top Airing", controller.topAiring),
                 buildHorizontalSection("🔥 Top Ranked", controller.topRanked),
                 buildHorizontalSection("📢 Top Popular", controller.topPopular),
@@ -115,7 +118,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // ✅ Horizontal List Section (Trending section big)
   Widget buildHorizontalSection(String title, RxList animeList) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         const SizedBox(height: 10),
         SizedBox(
-          height: 270, // ✅ Increased height for better UI
+          height: 270,
           child: Obx(() {
             if (animeList.isEmpty) {
               return const Center(

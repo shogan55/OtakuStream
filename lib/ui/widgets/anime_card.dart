@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../details/details_screen.dart';
 import '../../models/api/anime_model.dart';
+import '../../routes/app_routes.dart'; // ✅ import route names
 
 class AnimeCard extends StatelessWidget {
   final Anime anime;
@@ -12,11 +12,11 @@ class AnimeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => DetailsScreen(), arguments: anime);
+        // ✅ Use named route to ensure binding is triggered
+        Get.toNamed(AppRoutes.details, arguments: anime);
       },
       child: Column(
         children: [
-          // ✅ Anime Card with Rounded Borders
           Container(
             margin: const EdgeInsets.only(right: 12),
             width: 130,
@@ -26,7 +26,6 @@ class AnimeCard extends StatelessWidget {
             ),
             child: Stack(
               children: [
-                // ✅ Anime Image
                 ClipRRect(
                   borderRadius: BorderRadius.circular(16),
                   child: Image.network(
@@ -34,18 +33,15 @@ class AnimeCard extends StatelessWidget {
                     fit: BoxFit.cover,
                     height: 190,
                     width: double.infinity,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Image.network(
-                        'https://via.placeholder.com/150x200?text=No+Image',
-                        fit: BoxFit.cover,
-                        height: 190,
-                        width: double.infinity,
-                      );
-                    },
+                    errorBuilder:
+                        (_, __, ___) => Image.network(
+                          'https://via.placeholder.com/150x200?text=No+Image',
+                          fit: BoxFit.cover,
+                          height: 190,
+                          width: double.infinity,
+                        ),
                   ),
                 ),
-
-                // ✅ Score Badge (Styled like Image)
                 Positioned(
                   bottom: 5,
                   left: 5,
@@ -55,16 +51,15 @@ class AnimeCard extends StatelessWidget {
                       vertical: 4,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.cyan, // Change to match your theme
+                      color: Colors.cyan,
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Row(
-                      mainAxisSize: MainAxisSize.min,
                       children: [
                         const Icon(Icons.star, color: Colors.black, size: 14),
                         const SizedBox(width: 3),
                         Text(
-                          anime.score != null ? anime.score.toString() : "0.0",
+                          anime.score.toStringAsFixed(1),
                           style: const TextStyle(
                             color: Colors.black,
                             fontSize: 12,
@@ -78,10 +73,7 @@ class AnimeCard extends StatelessWidget {
               ],
             ),
           ),
-
           const SizedBox(height: 5),
-
-          // ✅ Anime Title
           SizedBox(
             width: 130,
             child: Text(
