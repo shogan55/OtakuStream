@@ -51,18 +51,46 @@
 
 🎨 Screenshots
 
-📌 Home Screen
+📌 **Home Screen**
 
 <p align="center">
-  <img src="https://shogan55/OtakuStream/main/assets/Home.png" width="300px">
-</p>  📌 Anime Details
+  <img src="https://raw.githubusercontent.com/shogan55/OtakuStream/main/assets/Home.png" width="300px">
+</p>  
+
+📌 **Anime Details Screen**
 
 <p align="center">
-  <img src="https://your-image-url.com" width="300px">
-</p>  📌 Watchlist
+  <img src="https://raw.githubusercontent.com/shogan55/OtakuStream/main/assets/Details.png" width="300px">
+</p>  
+
+📌 **Search Screen**
 
 <p align="center">
-  <img src="https://your-image-url.com" width="300px">
+  <img src="https://raw.githubusercontent.com/shogan55/OtakuStream/main/assets/Search.png" width="300px">
+</p>
+
+📌 **Login Screen**
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/shogan55/OtakuStream/main/assets/Login.png" width="300px">
+</p>  
+
+📌 **Profile Screen**
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/shogan55/OtakuStream/main/assets/Profile.png" width="300px">
+</p>
+
+📌 **Categories Screen**
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/shogan55/OtakuStream/main/assets/Categories.png" width="300px">
+</p>
+
+📌 **Settings Screen**
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/shogan55/OtakuStream/main/assets/Settings.png" width="300px">
 </p>
 
 
