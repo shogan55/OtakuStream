@@ -54,7 +54,7 @@
 📌 Home Screen
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/shogan55/OtakuStream/main/assets/Home.png" width="300px">
+  <img src="https://shogan55/OtakuStream/main/assets/Home.png" width="300px">
 </p>  📌 Anime Details
 
 <p align="center">
