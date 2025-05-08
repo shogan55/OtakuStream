@@ -4,9 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 class AboutController extends GetxController {
   // ✅ Open Instagram
   void openInstagram() async {
-    Uri url = Uri.parse(
-      'https://instagram.com/otakustream',
-    ); // Replace with actual link
+    Uri url = Uri.parse('https://instagram.com/otakustream');
     if (await canLaunchUrl(url)) {
       await launchUrl(url, mode: LaunchMode.externalApplication);
     } else {
@@ -14,11 +12,8 @@ class AboutController extends GetxController {
     }
   }
 
-  // ✅ Open Reddit
   void openReddit() async {
-    Uri url = Uri.parse(
-      'https://reddit.com/r/otakustream',
-    ); // Replace with actual link
+    Uri url = Uri.parse('https://reddit.com/r/otakustream');
     if (await canLaunchUrl(url)) {
       await launchUrl(url, mode: LaunchMode.externalApplication);
     } else {
@@ -26,11 +21,8 @@ class AboutController extends GetxController {
     }
   }
 
-  // ✅ Open Discord
   void openDiscord() async {
-    Uri url = Uri.parse(
-      'https://discord.gg/otakustream',
-    ); // Replace with actual link
+    Uri url = Uri.parse('https://discord.gg/otakustream');
     if (await canLaunchUrl(url)) {
       await launchUrl(url, mode: LaunchMode.externalApplication);
     } else {

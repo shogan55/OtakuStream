@@ -1,23 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:get/get.dart';
-import '../../routes/app_routes.dart';
+import 'package:lottie/lottie.dart';
+import 'splash_controller.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+class SplashScreen extends StatelessWidget {
+  SplashScreen({super.key});
 
-  @override
-  _SplashScreenState createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(const Duration(seconds: 3), () {
-      Get.offNamed(AppRoutes.home);
-    });
-  }
+  final SplashController controller = Get.put(
+    SplashController(),
+  ); // ✅ Inject controller
 
   @override
   Widget build(BuildContext context) {

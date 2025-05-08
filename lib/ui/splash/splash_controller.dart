@@ -1,22 +1,24 @@
 import 'package:get/get.dart';
-import 'package:otakustream/routes/app_routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../../routes/app_routes.dart';
 
 class SplashController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    _navigate();
+    checkLogin();
   }
 
-  void _navigate() async {
-    await Future.delayed(Duration(seconds: 3)); // Wait for 3 sec
+  void checkLogin() async {
+    await Future.delayed(const Duration(seconds: 2));
+    final user = FirebaseAuth.instance.currentUser;
 
-    User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      Get.offNamed(AppRoutes.home); // Navigate to Home if logged in
+      print("✅ Splash: Logged in as ${user.email}");
+      Get.offAllNamed(AppRoutes.home);
     } else {
-      Get.offNamed(AppRoutes.login); // Navigate to Login if not logged in
+      print("❌ Splash: No user logged in");
+      Get.offAllNamed(AppRoutes.login);
     }
   }
 }

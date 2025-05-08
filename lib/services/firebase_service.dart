@@ -6,18 +6,15 @@ class FirebaseService {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
   static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  /// ✅ Get Current User ID
   static String? getUserId() {
     return _auth.currentUser?.uid;
   }
 
-  /// ✅ Sign Up with Email & Password
   static Future<UserCredential?> signUp(String email, String password) async {
     try {
       UserCredential userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
 
-      // ✅ Save user data in Firestore
       await _firestore.collection('users').doc(userCredential.user!.uid).set({
         "email": email,
         "createdAt": DateTime.now(),
@@ -30,7 +27,6 @@ class FirebaseService {
     }
   }
 
-  /// ✅ Sign In with Email & Password
   static Future<UserCredential?> signIn(String email, String password) async {
     try {
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
@@ -44,7 +40,6 @@ class FirebaseService {
     }
   }
 
-  /// ✅ Sign Out
   static Future<void> signOut() async {
     await _auth.signOut();
   }
