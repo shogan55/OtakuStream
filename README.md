@@ -84,7 +84,7 @@
 📌 **Categories Screen**
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/shogan55/OtakuStream/main/assets/Categories.jpg" width="300px">
+  <img src="https://raw.githubusercontent.com/shogan55/OtakuStream/main/assets/Categorie.jpg" width="300px">
 </p>
 
 📌 **Settings Screen**
